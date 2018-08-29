@@ -60,12 +60,24 @@ namespace SkillManagement.DataAccess.Core
 
         public void Delete(TEntity entity)
         {
-            var query = $"delete from {typeof(TEntity).Name}s where Id = @Id";
+            // applying soft delete
+            var columns = GetColumns();
+            var isActiveColumnUpdateString = columns.Where(e => e == "IsActive").Select(e => $"{e} = 0");
+            var query = $"update {typeof(TEntity).Name}s set {isActiveColumnUpdateString} where Id = @Id";
 
             using (var db = _connectionFactory.GetSqlConnection)
             {
                 db.Execute(query, entity);
             }
+
+            #region Actual record deleting // commented
+            //var query = $"delete from {typeof(TEntity).Name}s where Id = @Id";
+
+            //using (var db = _connectionFactory.GetSqlConnection)
+            //{
+            //    db.Execute(query, entity);
+            //}
+            #endregion
 
             #region another way to delete record using Stored Procedure, but need to pass Id as a parameter //commented
             //using (var db = _connectionFactory.GetSqlConnection)
