@@ -10,29 +10,34 @@ namespace SkillManagement.DataAccess.Services
 {
     public class SkillService : ISkillService
     {
+        IUnitOfWork _unitOfWork;
+        public SkillService(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
         public int AddSkill(Skill skill)
         {
-            throw new NotImplementedException();
+            return _unitOfWork.SkillRepository.Add(skill);
         }
 
         public void DeleteSkill(Skill skill)
         {
-            throw new NotImplementedException();
+            _unitOfWork.SkillRepository.Delete(skill);
         }
 
         public IEnumerable<Skill> GetAllSkills()
         {
-            throw new NotImplementedException();
+            return _unitOfWork.SkillRepository.GetAll();
         }
 
         public Skill GetSkillById(int Id)
         {
-            throw new NotImplementedException();
+            return _unitOfWork.SkillRepository.Get(Id);
         }
 
         public void UpdateSkill(Skill skill)
         {
-            throw new NotImplementedException();
+            _unitOfWork.SkillRepository.Update(skill);
         }
     }
 }
