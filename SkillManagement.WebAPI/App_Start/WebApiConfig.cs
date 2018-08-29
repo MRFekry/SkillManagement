@@ -20,6 +20,7 @@ namespace SkillManagement.WebAPI
             container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterType<IEmployeeService, EmployeeService>();
             container.RegisterType<IConnectionFactory, ConnectionFactory>();
+            container.RegisterType<ISkillService, SkillService>();
 
             config.DependencyResolver = new UnityResolver(container);
 
