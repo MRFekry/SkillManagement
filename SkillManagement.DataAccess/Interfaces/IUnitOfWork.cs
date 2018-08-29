@@ -9,6 +9,7 @@ namespace SkillManagement.DataAccess.Interfaces
     public interface IUnitOfWork
     {
         IEmployeeRepository EmployeeRepository { get; }
+        ISkillRepository SkillRepository { get; }
 
         void Complete();
     }

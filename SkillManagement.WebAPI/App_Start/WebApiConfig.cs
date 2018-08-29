@@ -17,6 +17,7 @@ namespace SkillManagement.WebAPI
             var container = new UnityContainer();
 
             container.RegisterType<IEmployeeRepository, EmployeeRepository>();
+            container.RegisterType<ISkillRepository, SkillRepository>();
             container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterType<IEmployeeService, EmployeeService>();
             container.RegisterType<IConnectionFactory, ConnectionFactory>();
