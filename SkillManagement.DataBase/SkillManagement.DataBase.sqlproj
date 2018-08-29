@@ -66,7 +66,6 @@
   <ItemGroup>
     <Build Include="dbo\Tables\Employees.sql" />
     <Build Include="dbo\Tables\Users.sql" />
-    <Build Include="dbo\Tables\SkillCategories.sql" />
     <Build Include="dbo\Tables\Skills.sql" />
     <Build Include="dbo\Tables\Roles.sql" />
     <Build Include="dbo\Tables\Scores.sql" />
