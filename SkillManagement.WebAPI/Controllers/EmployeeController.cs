@@ -27,7 +27,7 @@ namespace SkillManagement.WebAPI.Controllers
         #endregion
 
         #region APIs
-        // GET: api/Employee
+        // GET: Get all employees
         [Route("Employees")]
         [HttpGet]
         public IEnumerable<Employee> Get()
@@ -35,15 +35,15 @@ namespace SkillManagement.WebAPI.Controllers
             return _employeeService.GetAllEmployees();
         }
 
-        // GET: api/Employee/5
-        [Route("Employee/{employee}")]
+        // GET: Get employee by id
+        [Route("Employee/{Id}")]
         [HttpGet]
-        public Employee Get(long id)
+        public Employee Get(long Id)
         {
-            return _employeeService.GetEmployeeById(id);
+            return _employeeService.GetEmployeeById(Id);
         }
 
-        // POST: api/Employee
+        // POST: Add new employee
         [Route("Employees")]
         [HttpPost]
         public int Post([FromBody]Employee employee)
@@ -51,7 +51,7 @@ namespace SkillManagement.WebAPI.Controllers
             return _employeeService.AddEmployee(employee);
         }
 
-        // PUT: api/Employee/5
+        // PUT: Update existing employee
         [Route("Employee/{employee}")]
         [HttpPut]
         public void Put(int id, [FromBody]Employee employee)
@@ -59,7 +59,7 @@ namespace SkillManagement.WebAPI.Controllers
             _employeeService.UpdateEmployee(employee);
         }
 
-        // DELETE: api/Employee/5
+        // DELETE: Delete existing employee
         [Route("Employee/{employee}")]
         [HttpDelete]
         public void Delete([FromBody]Employee employee)
