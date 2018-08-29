@@ -49,7 +49,6 @@
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Score.cs" />
     <Compile Include="Entities\Skill.cs" />
-    <Compile Include="Entities\SkillCategory.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Infrastructure\ConnectionFactory.cs" />
     <Compile Include="Interfaces\IConnectionFactory.cs" />
