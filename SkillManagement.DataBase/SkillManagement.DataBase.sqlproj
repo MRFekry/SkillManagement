@@ -75,4 +75,7 @@
     <Build Include="dbo\Stored Procedures\SP_DeleteRecordFromTable.sql" />
     <Build Include="dbo\Stored Procedures\SP_UpdateRecordInTable.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="SkillManagement.DataBase.refactorlog" />
+  </ItemGroup>
 </Project>

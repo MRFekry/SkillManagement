@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SkillManagement.DataAccess.Entities
 {
-    public class Scores
+    public class Score
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Score { get; set; }
+        public int score { get; set; }
     }
 }

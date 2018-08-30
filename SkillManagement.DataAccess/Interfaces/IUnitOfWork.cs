@@ -10,6 +10,7 @@ namespace SkillManagement.DataAccess.Interfaces
     {
         IEmployeeRepository EmployeeRepository { get; }
         ISkillRepository SkillRepository { get; }
+        IScoreRepository ScoreRepository { get; }
 
         void Complete();
     }

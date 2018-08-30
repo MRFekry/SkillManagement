@@ -54,6 +54,8 @@
     <Compile Include="Interfaces\IConnectionFactory.cs" />
     <Compile Include="Interfaces\IEmployeeRepository.cs" />
     <Compile Include="Interfaces\IEmployeeService.cs" />
+    <Compile Include="Interfaces\IScoreRepository.cs" />
+    <Compile Include="Interfaces\IScoreService.cs" />
     <Compile Include="Interfaces\ISkillRepository.cs" />
     <Compile Include="Interfaces\ISkillService.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
@@ -61,8 +63,10 @@
     <Compile Include="Core\GenericRepository.cs" />
     <Compile Include="Interfaces\IGenericRepository.cs" />
     <Compile Include="Repositories\EmployeeRepository.cs" />
+    <Compile Include="Repositories\ScoreRepository.cs" />
     <Compile Include="Repositories\SkillRepository.cs" />
     <Compile Include="Services\EmployeeService.cs" />
+    <Compile Include="Services\ScoreService.cs" />
     <Compile Include="Services\SkillService.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />
   </ItemGroup>
