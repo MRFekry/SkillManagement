@@ -7,10 +7,12 @@ namespace SkillManagement.DataAccess.UnitOfWork
     {
         private readonly IEmployeeRepository _employeeRepository;
         private readonly ISkillRepository _skillRepository;
-        public UnitOfWork(IEmployeeRepository employeeRepository, ISkillRepository skillRepository)
+        private readonly IScoreRepository _scoreRepository;
+        public UnitOfWork(IEmployeeRepository employeeRepository, ISkillRepository skillRepository, IScoreRepository scoreRepository)
         {
             _employeeRepository = employeeRepository;
             _skillRepository = skillRepository;
+            _scoreRepository = scoreRepository;
         }
         public IEmployeeRepository EmployeeRepository
         {
@@ -25,6 +27,14 @@ namespace SkillManagement.DataAccess.UnitOfWork
             get
             {
                 return _skillRepository;
+            }
+        }
+
+        public IScoreRepository ScoreRepository
+        {
+            get
+            {
+                return _scoreRepository;
             }
         }
 

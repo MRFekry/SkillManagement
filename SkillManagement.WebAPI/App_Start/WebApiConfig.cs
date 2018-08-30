@@ -18,10 +18,12 @@ namespace SkillManagement.WebAPI
 
             container.RegisterType<IEmployeeRepository, EmployeeRepository>();
             container.RegisterType<ISkillRepository, SkillRepository>();
+            container.RegisterType<IScoreRepository, ScoreRepository>();
             container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterType<IEmployeeService, EmployeeService>();
             container.RegisterType<IConnectionFactory, ConnectionFactory>();
             container.RegisterType<ISkillService, SkillService>();
+            container.RegisterType<IScoreService, ScoreService>();
 
             config.DependencyResolver = new UnityResolver(container);
 
