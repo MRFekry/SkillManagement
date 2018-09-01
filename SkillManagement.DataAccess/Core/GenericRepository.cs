@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using SkillManagement.DataAccess.Entities;
 using SkillManagement.DataAccess.Interfaces;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +8,7 @@ using System.Reflection;
 
 namespace SkillManagement.DataAccess.Core
 {
-    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity, TId> : IGenericRepository<TEntity, TId> where TEntity : class, IEntity<TId>
     {
         protected IConnectionFactory _connectionFactory;
         public GenericRepository(IConnectionFactory connectionFactory)
@@ -40,6 +41,8 @@ namespace SkillManagement.DataAccess.Core
 
         public void Update(TEntity entity)
         {
+            var tmp = entity.Id;
+
             var columns = GetColumns();
             var stringOfColumns = string.Join(", ", columns.Select(e => $"{e} = @{e}"));
             var query = $"update {typeof(TEntity).Name}s set {stringOfColumns} where Id = @Id";
