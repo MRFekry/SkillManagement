@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace SkillManagement.DataAccess.Interfaces
 {
-    public interface IEmployeeRepository : IGenericRepository<Employee>
+    public interface IEmployeeRepository<TId> : IGenericRepository<IEntity<TId>, TId>
     {
+
     }
 }
