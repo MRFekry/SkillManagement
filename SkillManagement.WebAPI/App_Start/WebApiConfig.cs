@@ -1,8 +1,9 @@
 ﻿using SkillManagement.DataAccess.Infrastructure;
 using SkillManagement.DataAccess.Interfaces;
+using SkillManagement.DataAccess.Interfaces.SQLInterfaces.ISQLRepositories;
 using SkillManagement.DataAccess.Repositories;
 using SkillManagement.DataAccess.Services;
-using SkillManagement.DataAccess.UnitOfWork;
+using SkillManagement.DataAccess.sqlunitOfWork;
 using SkillManagement.WebAPI.Unity;
 using System.Web.Http;
 using Unity;
@@ -16,14 +17,14 @@ namespace SkillManagement.WebAPI
             //Unity providers registerations
             var container = new UnityContainer();
 
-            container.RegisterType<IEmployeeRepository, EmployeeRepository>();
-            container.RegisterType<ISkillRepository, SkillRepository>();
-            container.RegisterType<IScoreRepository, ScoreRepository>();
-            container.RegisterType<IUnitOfWork, UnitOfWork>();
-            container.RegisterType<IEmployeeService, EmployeeService>();
+            container.RegisterType<ISQLEmployeeRepository, SQLEmployeeRepository>();
+            container.RegisterType<ISQLSkillRepository, SQLSkillRepository>();
+            container.RegisterType<ISQLScoreRepository, SQLScoreRepository>();
+            container.RegisterType<ISQLunitOfWork, SQLsqlunitOfWork>();
+            container.RegisterType<ISQLEmployeeService, SQLEmployeeService>();
             container.RegisterType<IConnectionFactory, ConnectionFactory>();
-            container.RegisterType<ISkillService, SkillService>();
-            container.RegisterType<IScoreService, ScoreService>();
+            container.RegisterType<ISQLSkillService, SQLSkillService>();
+            container.RegisterType<ISQLScoreService, SQLScoreService>();
 
             config.DependencyResolver = new UnityResolver(container);
 

@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,34 +46,36 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\AuditBase.cs" />
-    <Compile Include="Entities\Employee.cs" />
-    <Compile Include="Entities\Employees_Skill.cs" />
-    <Compile Include="Entities\Role.cs" />
-    <Compile Include="Entities\Score.cs" />
-    <Compile Include="Entities\Skill.cs" />
-    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\SQLEntities\SQLEmployee.cs" />
+    <Compile Include="Entities\SQLEntities\SQLEmployees_Skill.cs" />
+    <Compile Include="Interfaces\IEntity.cs" />
+    <Compile Include="Entities\SQLEntities\SQLRole.cs" />
+    <Compile Include="Entities\SQLEntities\SQLScore.cs" />
+    <Compile Include="Entities\SQLEntities\SQLSkill.cs" />
+    <Compile Include="Entities\SQLEntities\SQLUser.cs" />
     <Compile Include="Infrastructure\ConnectionFactory.cs" />
     <Compile Include="Interfaces\IConnectionFactory.cs" />
-    <Compile Include="Interfaces\IEmployeeRepository.cs" />
-    <Compile Include="Interfaces\IEmployeeService.cs" />
-    <Compile Include="Interfaces\IScoreRepository.cs" />
-    <Compile Include="Interfaces\IScoreService.cs" />
-    <Compile Include="Interfaces\ISkillRepository.cs" />
-    <Compile Include="Interfaces\ISkillService.cs" />
-    <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Interfaces\SQLInterfaces\ISQLRepositories\ISQLEmployeeRepository.cs" />
+    <Compile Include="Interfaces\SQLInterfaces\ISQLServices\ISQLEmployeeService.cs" />
+    <Compile Include="Interfaces\SQLInterfaces\ISQLRepositories\ISQLScoreRepository.cs" />
+    <Compile Include="Interfaces\SQLInterfaces\ISQLServices\ISQLScoreService.cs" />
+    <Compile Include="Interfaces\SQLInterfaces\ISQLRepositories\ISQLSkillRepository.cs" />
+    <Compile Include="Interfaces\SQLInterfaces\ISQLServices\ISQLSkillService.cs" />
+    <Compile Include="Interfaces\ISQLUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\GenericRepository.cs" />
     <Compile Include="Interfaces\IGenericRepository.cs" />
-    <Compile Include="Repositories\EmployeeRepository.cs" />
-    <Compile Include="Repositories\ScoreRepository.cs" />
-    <Compile Include="Repositories\SkillRepository.cs" />
-    <Compile Include="Services\EmployeeService.cs" />
-    <Compile Include="Services\ScoreService.cs" />
-    <Compile Include="Services\SkillService.cs" />
-    <Compile Include="UnitOfWork\UnitOfWork.cs" />
+    <Compile Include="Repositories\SQL Repositories\SQLEmployeeRepository.cs" />
+    <Compile Include="Repositories\SQL Repositories\SQLScoreRepository.cs" />
+    <Compile Include="Repositories\SQL Repositories\SQLSkillRepository.cs" />
+    <Compile Include="Services\SQL Services\SQLEmployeeService.cs" />
+    <Compile Include="Services\SQL Services\SQLScoreService.cs" />
+    <Compile Include="Services\SQL Services\SQLSkillService.cs" />
+    <Compile Include="UnitOfWork\SQLUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

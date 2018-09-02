@@ -1,25 +1,21 @@
-﻿using SkillManagement.DataAccess.Entities;
+﻿using SkillManagement.DataAccess.Entities.SQLEntities;
 using SkillManagement.DataAccess.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace SkillManagement.WebAPI.Controllers
 {
     public class ScoreController : ApiController
     {
-        IScoreService _scoreService;
-        public ScoreController(IScoreService scoreService)
+        ISQLScoreService _scoreService;
+        public ScoreController(ISQLScoreService scoreService)
         {
             _scoreService = scoreService;
         }
         // GET: Get all Scores
         [Route("Scores")]
         [HttpGet]
-        public IEnumerable<Score> Get()
+        public IEnumerable<SQLScore> Get()
         {
             return _scoreService.GetAllScores();
         }
@@ -27,7 +23,7 @@ namespace SkillManagement.WebAPI.Controllers
         // GET: Get score by id
         [Route("Score/{Id}")]
         [HttpGet]
-        public Score Get(int id)
+        public SQLScore Get(int id)
         {
             return _scoreService.GetScoreById(id);
         }
@@ -35,7 +31,7 @@ namespace SkillManagement.WebAPI.Controllers
         // POST: Add new score
         [Route("Scores")]
         [HttpPost]
-        public int Post([FromBody]Score score)
+        public int Post([FromBody]SQLScore score)
         {
             return _scoreService.AddScore(score);
         }
@@ -43,7 +39,7 @@ namespace SkillManagement.WebAPI.Controllers
         // PUT: Update existing score
         [Route("Score/{score}")]
         [HttpPut]
-        public void Put(int id, [FromBody]Score score)
+        public void Put(int id, [FromBody]SQLScore score)
         {
             _scoreService.UpdateScore(score);
         }
@@ -51,7 +47,7 @@ namespace SkillManagement.WebAPI.Controllers
         // DELETE: Delete existing score
         [Route("Score/{score}")]
         [HttpDelete]
-        public void Delete(Score score)
+        public void Delete(SQLScore score)
         {
             _scoreService.DeleteScore(score);
         }

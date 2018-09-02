@@ -1,16 +1,17 @@
-﻿using SkillManagement.DataAccess.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SkillManagement.DataAccess.Interfaces
 {
-    public interface IGenericRepository<TEntity, TId> where TEntity : IEntity<TId> //class
+    public interface IGenericRepository<TEntity, TId> where TEntity : IEntity<TId>
     {
         IEnumerable<TEntity> GetAll();
-        TEntity Get(long Id);
+
+        TEntity Get(TId Id);
         
         int Add(TEntity entity);
-        void Update(TEntity entity);
-        void Delete(TEntity entity);
 
+        void Update(TEntity entity);
+
+        void Delete(TEntity entity);
     }
 }
