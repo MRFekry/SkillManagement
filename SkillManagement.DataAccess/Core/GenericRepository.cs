@@ -8,12 +8,17 @@ using System.Reflection;
 
 namespace SkillManagement.DataAccess.Core
 {
-    public class GenericRepository<TEntity, TId> : IGenericRepository<TEntity, TId> where TEntity : class, IEntity<TId>
+    public class GenericRepository<TEntity, TId> : IGenericRepository<TEntity, TId> where TEntity : IEntity<TId>
     {
         protected IConnectionFactory _connectionFactory;
-        public GenericRepository(IConnectionFactory connectionFactory)
+        private readonly string _tableName;
+        private readonly bool _isSoftDelete;
+
+        public GenericRepository(IConnectionFactory connectionFactory, string tableName, bool isSoftDelete)
         {
             _connectionFactory = connectionFactory;
+            _tableName = tableName;
+            _isSoftDelete = isSoftDelete;
         }
 
         public int Add(TEntity entity)
@@ -27,90 +32,78 @@ namespace SkillManagement.DataAccess.Core
             {
                 var InsertedEntityId = db.Execute(
                     sql: query,
-                    param: new { P_tableName = typeof(TEntity).Name, P_columnsString = stringOfColumns, P_propertiesString = stringOfProperties },
+                    param: new { P_tableName = _tableName, P_columnsString = stringOfColumns, P_propertiesString = stringOfProperties },
                     commandType: CommandType.StoredProcedure);
 
                 return InsertedEntityId;
             }
-
-            #region another way to get result using static query statement // commented
-            //var query = "insert into " + typeof(TEntity).Name + "s (" + stringOfColumns + ") values (" + stringOfProperties + "); select cast(scope_Identity() as int)";
-            //var InsertedEntityId = db.Query<int>(query, entity).First();
-            #endregion
         }
 
         public void Update(TEntity entity)
         {
-            var tmp = entity.Id;
-
             var columns = GetColumns();
             var stringOfColumns = string.Join(", ", columns.Select(e => $"{e} = @{e}"));
-            var query = $"update {typeof(TEntity).Name}s set {stringOfColumns} where Id = @Id";
-
+            
             using (var db = _connectionFactory.GetSqlConnection)
             {
-                db.Execute(query, entity);
+                var query = "SP_UpdateRecordInTable";
+                var UpdatedEntityId = db.Execute(
+                    sql: query,
+                    param: new { P_tableName = _tableName, P_columnsString = stringOfColumns, P_Id = entity.Id },
+                    commandType: CommandType.StoredProcedure);
             }
-
-            #region another way to delete record using Stored Procedure, but need to pass Id as a parameter //commented
-            //var query = "SP_UpdateRecordInTable";
-            //var UpdatedEntityId = db.Execute(
-            //    sql: query,
-            //    param: new { P_tableName = typeof(TEntity).Name, P_columnsString = stringOfColumns },
-            //    commandType: CommandType.StoredProcedure);
-            #endregion
         }
 
         public void Delete(TEntity entity)
         {
-            // applying soft delete
-            var columns = GetColumns();
-            var isActiveColumnUpdateString = columns.Where(e => e == "IsActive").Select(e => $"{e} = 0");
-            var query = $"update {typeof(TEntity).Name}s set {isActiveColumnUpdateString} where Id = @Id";
-
-            using (var db = _connectionFactory.GetSqlConnection)
+            if (_isSoftDelete) // applying soft delete
             {
-                db.Execute(query, entity);
+                var columns = GetColumns();
+                var isActiveColumnUpdateString = columns.Where(e => e == "IsActive").Select(e => $"{e} = 0");
+
+                using (var db = _connectionFactory.GetSqlConnection)
+                {
+                    var query = "SP_UnActivateRecordInTable";
+                    var result = db.Execute(
+                        sql: query,
+                        param: new { P_tableName = _tableName, P_columnsString = isActiveColumnUpdateString, P_Id = entity.Id },
+                        commandType: CommandType.StoredProcedure);
+                }
             }
-
-            #region Actual record deleting // commented
-            //var query = $"delete from {typeof(TEntity).Name}s where Id = @Id";
-
-            //using (var db = _connectionFactory.GetSqlConnection)
-            //{
-            //    db.Execute(query, entity);
-            //}
-            #endregion
-
-            #region another way to delete record using Stored Procedure, but need to pass Id as a parameter //commented
-            //using (var db = _connectionFactory.GetSqlConnection)
-            //{
-            //    var query = "SP_DeleteRecordFromTable";
-            //    var result = db.Execute(
-            //        sql: query,
-            //        param: new { P_tableName = typeof(TEntity).Name, P_Id = entity.Id },
-            //        commandType: CommandType.StoredProcedure);
-            //}
-            #endregion
+            else // delete directly
+            {
+                using (var db = _connectionFactory.GetSqlConnection)
+                {
+                    var query = "SP_DeleteRecordFromTable";
+                    var result = db.Execute(
+                        sql: query,
+                        param: new { P_tableName = _tableName, P_Id = entity.Id },
+                        commandType: CommandType.StoredProcedure);
+                }
+            }
         }
 
-        public TEntity Get(long Id)
+        public TEntity Get(TId Id)
         {
-            var query = $"select * from {typeof(TEntity).Name}s where Id = @Id";
+            var query = "SP_InsertRecordToTable";
 
             using (var db = _connectionFactory.GetSqlConnection)
             {
-                return db.Query<TEntity>(query, new { Id }).FirstOrDefault();
+                return db.Query<TEntity>(query,
+                    new { P_tableName = _tableName, P_Id = Id },
+                    commandType: CommandType.StoredProcedure).FirstOrDefault();
             }
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-            var query = $"select * from {typeof(TEntity).Name}s";
+            var query = "SP_GetAllRecordsFromTable";
 
             using (var db = _connectionFactory.GetSqlConnection)
             {
-                return db.Query<TEntity>(query).ToList();
+                return db.Query<TEntity>(query,
+                    new { P_tableName = _tableName },
+                    commandType: CommandType.StoredProcedure);
             }
         }
 

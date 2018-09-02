@@ -1,10 +1,6 @@
-﻿using SkillManagement.DataAccess.Entities;
+﻿using SkillManagement.DataAccess.Entities.SQLEntities;
 using SkillManagement.DataAccess.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace SkillManagement.WebAPI.Controllers
@@ -12,7 +8,7 @@ namespace SkillManagement.WebAPI.Controllers
     public class EmployeeController : ApiController
     {
         #region Propertirs
-        IEmployeeService _employeeService;
+        ISQLEmployeeService _sqlEmployeeService;
         #endregion
 
         #region Constructors
@@ -20,9 +16,9 @@ namespace SkillManagement.WebAPI.Controllers
         {
 
         }
-        public EmployeeController(IEmployeeService employeeService)
+        public EmployeeController(ISQLEmployeeService sqlEmployeeService)
         {
-            _employeeService = employeeService;
+            _sqlEmployeeService = sqlEmployeeService;
         }
         #endregion
 
@@ -30,41 +26,41 @@ namespace SkillManagement.WebAPI.Controllers
         // GET: Get all employees
         [Route("Employees")]
         [HttpGet]
-        public IEnumerable<Employee> Get()
+        public IEnumerable<SQLEmployee> Get()
         {
-            return _employeeService.GetAllEmployees();
+            return _sqlEmployeeService.GetAllEmployees();
         }
 
         // GET: Get employee by id
         [Route("Employee/{Id}")]
         [HttpGet]
-        public Employee Get(long Id)
+        public SQLEmployee Get(long Id)
         {
-            return _employeeService.GetEmployeeById(Id);
+            return _sqlEmployeeService.GetEmployeeById(Id);
         }
 
         // POST: Add new employee
         [Route("Employees")]
         [HttpPost]
-        public int Post([FromBody]Employee employee)
+        public int Post([FromBody]SQLEmployee employee)
         {
-            return _employeeService.AddEmployee(employee);
+            return _sqlEmployeeService.AddEmployee(employee);
         }
 
         // PUT: Update existing employee
         [Route("Employee/{employee}")]
         [HttpPut]
-        public void Put(int id, [FromBody]Employee employee)
+        public void Put(int id, [FromBody]SQLEmployee employee)
         {
-            _employeeService.UpdateEmployee(employee);
+            _sqlEmployeeService.UpdateEmployee(employee);
         }
 
         // DELETE: Delete existing employee
         [Route("Employee/{employee}")]
         [HttpDelete]
-        public void Delete([FromBody]Employee employee)
+        public void Delete([FromBody]SQLEmployee employee)
         {
-            _employeeService.DeleteEmployee(employee);
+            _sqlEmployeeService.DeleteEmployee(employee);
         }
         #endregion
     }

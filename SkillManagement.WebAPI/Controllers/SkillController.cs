@@ -1,10 +1,6 @@
-﻿using SkillManagement.DataAccess.Entities;
+﻿using SkillManagement.DataAccess.Entities.SQLEntities;
 using SkillManagement.DataAccess.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace SkillManagement.WebAPI.Controllers
@@ -13,7 +9,7 @@ namespace SkillManagement.WebAPI.Controllers
     {
         #region Properties
 
-        private ISkillService _skillService;
+        private ISQLSkillService _skillService;
 
         #endregion
 
@@ -24,7 +20,7 @@ namespace SkillManagement.WebAPI.Controllers
 
         }
 
-        public SkillController(ISkillService skillService)
+        public SkillController(ISQLSkillService skillService)
         {
             _skillService = skillService;
         }
@@ -33,7 +29,7 @@ namespace SkillManagement.WebAPI.Controllers
         // GET: Get all skills
         [Route("Skills")]
         [HttpGet]
-        public IEnumerable<Skill> Get()
+        public IEnumerable<SQLSkill> Get()
         {
             return _skillService.GetAllSkills();
         }
@@ -41,7 +37,7 @@ namespace SkillManagement.WebAPI.Controllers
         // GET: Get skill by id
         [Route("Skill/{Id}")]
         [HttpGet]
-        public Skill Get(int id)
+        public SQLSkill Get(int id)
         {
             return _skillService.GetSkillById(id);
         }
@@ -49,7 +45,7 @@ namespace SkillManagement.WebAPI.Controllers
         // POST: Add new skill
         [Route("Skills")]
         [HttpPost]
-        public int Post([FromBody]Skill skill)
+        public int Post([FromBody]SQLSkill skill)
         {
             return _skillService.AddSkill(skill);
         }
@@ -57,7 +53,7 @@ namespace SkillManagement.WebAPI.Controllers
         // PUT: Update existing skill
         [Route("Skill/{skill}")]
         [HttpPut]
-        public void Put(int id, [FromBody]Skill skill)
+        public void Put(int id, [FromBody]SQLSkill skill)
         {
             _skillService.UpdateSkill(skill);
         }
@@ -65,7 +61,7 @@ namespace SkillManagement.WebAPI.Controllers
         // DELETE: Delete existing skill
         [Route("Skill/{skill}")]
         [HttpDelete]
-        public void Delete([FromBody]Skill skill)
+        public void Delete([FromBody]SQLSkill skill)
         {
             _skillService.DeleteSkill(skill);
         }
