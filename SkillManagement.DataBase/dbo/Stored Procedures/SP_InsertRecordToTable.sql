@@ -10,11 +10,8 @@ CREATE PROCEDURE [dbo].[SP_InsertRecordToTable]
 	@P_propertiesString nvarchar(MAX) = null
 AS
 BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 	
-    -- Insert statements for procedure here
 	declare @V_table nvarchar(50) = null
 	if (@P_tableName is not null)
 		select @V_table = QUOTENAME( TABLE_NAME )
