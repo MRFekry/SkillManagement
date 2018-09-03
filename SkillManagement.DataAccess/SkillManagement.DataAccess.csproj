@@ -56,6 +56,8 @@
     <Compile Include="Infrastructure\ConnectionFactory.cs" />
     <Compile Include="Interfaces\IConnectionFactory.cs" />
     <Compile Include="Interfaces\SQLInterfaces\ISQLRepositories\ISQLEmployeeRepository.cs" />
+    <Compile Include="Interfaces\SQLInterfaces\ISQLRepositories\ISQLEmployeeSkillRepository.cs" />
+    <Compile Include="Interfaces\SQLInterfaces\ISQLServices\ISQLEmployeeSkillService.cs" />
     <Compile Include="Interfaces\SQLInterfaces\ISQLServices\ISQLEmployeeService.cs" />
     <Compile Include="Interfaces\SQLInterfaces\ISQLRepositories\ISQLScoreRepository.cs" />
     <Compile Include="Interfaces\SQLInterfaces\ISQLServices\ISQLScoreService.cs" />
@@ -66,8 +68,10 @@
     <Compile Include="Core\GenericRepository.cs" />
     <Compile Include="Interfaces\IGenericRepository.cs" />
     <Compile Include="Repositories\SQL Repositories\SQLEmployeeRepository.cs" />
+    <Compile Include="Repositories\SQL Repositories\SQLEmployeeSkillRepository.cs" />
     <Compile Include="Repositories\SQL Repositories\SQLScoreRepository.cs" />
     <Compile Include="Repositories\SQL Repositories\SQLSkillRepository.cs" />
+    <Compile Include="Services\SQL Services\SQLEmployeeSkillService.cs" />
     <Compile Include="Services\SQL Services\SQLEmployeeService.cs" />
     <Compile Include="Services\SQL Services\SQLScoreService.cs" />
     <Compile Include="Services\SQL Services\SQLSkillService.cs" />

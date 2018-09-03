@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SkillManagement.DataAccess.Entities.SQLEntities;
+using SkillManagement.DataAccess.Interfaces.SQLInterfaces.ISQLServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,31 +11,69 @@ namespace SkillManagement.WebAPI.Controllers
 {
     public class EmployeeSkillController : ApiController
     {
-        // GET: api/EmployeeSkill
-        public IEnumerable<string> Get()
+        #region Propertirs
+        ISQLEmployeeSkillService _sqlEmployeeSkillService;
+        #endregion
+
+        #region Constructors
+        public EmployeeSkillController()
         {
-            return new string[] { "value1", "value2" };
+
+        }
+        public EmployeeSkillController(ISQLEmployeeSkillService sqlEmployeeSkillService)
+        {
+            _sqlEmployeeSkillService = sqlEmployeeSkillService;
+        }
+        #endregion
+
+        #region APIs
+        // GET: Get all employee skills by employee id
+        [Route("Employee/Skills/{employeeId}")]
+        [HttpGet]
+        public IEnumerable<SQLEmployees_Skill> GetAllEmployeeSkillsByEmployeeId(long employeeId)
+        {
+            return _sqlEmployeeSkillService.GetAllEmployeeSkillsByEmployeeId(employeeId);
         }
 
-        // GET: api/EmployeeSkill/5
-        public string Get(int id)
+        // GET: Get all employee skills
+        [Route("Employee/Skills")]
+        [HttpGet]
+        public IEnumerable<SQLEmployees_Skill> Get()
         {
-            return "value";
+            return _sqlEmployeeSkillService.GetAllEmployeeSkills();
         }
 
-        // POST: api/EmployeeSkill
-        public void Post([FromBody]string value)
+        // GET: Get employee skills by id
+        [Route("Employee/Skills/{Id}")]
+        [HttpGet]
+        public SQLEmployees_Skill Get(long Id)
         {
+            return _sqlEmployeeSkillService.GetEmployeeSkillById(Id);
         }
 
-        // PUT: api/EmployeeSkill/5
-        public void Put(int id, [FromBody]string value)
+        // POST: Add new employee skill
+        [Route("Employee/Skills")]
+        [HttpPost]
+        public int Post([FromBody]SQLEmployees_Skill employeeSkill)
         {
+            return _sqlEmployeeSkillService.AddEmployeeSkill(employeeSkill);
         }
 
-        // DELETE: api/EmployeeSkill/5
-        public void Delete(int id)
+        // PUT: Update existing employee skill
+        [Route("Employee/Skills/{employeeSkill}")]
+        [HttpPut]
+        public void Put(int id, [FromBody]SQLEmployees_Skill employeeSkill)
         {
+            _sqlEmployeeSkillService.UpdateEmployeeSkill(employeeSkill);
         }
+
+        // DELETE: Delete existing employee skill
+        [Route("Employee/Skills/{employeeSkill}")]
+        [HttpDelete]
+        public void Delete([FromBody]SQLEmployees_Skill employeeSkill)
+        {
+            _sqlEmployeeSkillService.DeleteEmployeeSkill(employeeSkill);
+        }
+        #endregion
     }
 }
