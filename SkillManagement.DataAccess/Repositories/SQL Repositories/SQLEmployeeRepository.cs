@@ -8,7 +8,9 @@ namespace SkillManagement.DataAccess.Repositories
 {
     public class SQLEmployeeRepository : GenericRepository<SQLEmployee, long>, ISQLEmployeeRepository
     {
-        public SQLEmployeeRepository(IConnectionFactory connectionFactory) : base(connectionFactory, "Employees", true)
+        private static readonly string _tableName = "Employees";
+        private static readonly bool _isSoftDelete = true;
+        public SQLEmployeeRepository(IConnectionFactory connectionFactory) : base(connectionFactory, _tableName, _isSoftDelete)
         {
         }
     }

@@ -42,7 +42,7 @@ namespace SkillManagement.WebAPI.Controllers
         // POST: Add new employee
         [Route("Employees")]
         [HttpPost]
-        public int Post([FromBody]SQLEmployee employee)
+        public long Post([FromBody]SQLEmployee employee)
         {
             return _sqlEmployeeService.AddEmployee(employee);
         }
@@ -50,7 +50,7 @@ namespace SkillManagement.WebAPI.Controllers
         // PUT: Update existing employee
         [Route("Employee/{employee}")]
         [HttpPut]
-        public void Put(int id, [FromBody]SQLEmployee employee)
+        public void Put([FromBody]SQLEmployee employee)
         {
             _sqlEmployeeService.UpdateEmployee(employee);
         }

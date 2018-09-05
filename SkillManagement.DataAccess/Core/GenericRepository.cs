@@ -21,7 +21,7 @@ namespace SkillManagement.DataAccess.Core
             _isSoftDelete = isSoftDelete;
         }
 
-        public int Add(TEntity entity)
+        public long Add(TEntity entity)
         {
             var columns = GetColumns();
             var stringOfColumns = string.Join(", ", columns);

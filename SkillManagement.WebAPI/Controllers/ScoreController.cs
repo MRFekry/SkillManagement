@@ -31,7 +31,7 @@ namespace SkillManagement.WebAPI.Controllers
         // POST: Add new score
         [Route("Scores")]
         [HttpPost]
-        public int Post([FromBody]SQLScore score)
+        public long Post([FromBody]SQLScore score)
         {
             return _scoreService.AddScore(score);
         }

@@ -5,7 +5,7 @@ namespace SkillManagement.DataAccess.Interfaces
 {
     public interface ISQLScoreService
     {
-        int AddScore(SQLScore score);
+        long AddScore(SQLScore score);
         void UpdateScore(SQLScore score);
         void DeleteScore(SQLScore score);
         SQLScore GetScoreById(int Id);

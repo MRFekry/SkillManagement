@@ -10,6 +10,8 @@ namespace SkillManagement.DataAccess.sqlunitOfWork
         private readonly ISQLEmployeeSkillRepository _sqlEmployeeSkillRepository;
         private readonly ISQLSkillRepository _sqlSkillRepository;
         private readonly ISQLScoreRepository _sqlScoreRepository;
+
+        [injectionConstructor]
         public SQLsqlunitOfWork(ISQLEmployeeRepository sqlEmployeeRepository,
             ISQLEmployeeSkillRepository sqlEmployeeSkillRepository,
             ISQLSkillRepository sqlSkillRepository,
