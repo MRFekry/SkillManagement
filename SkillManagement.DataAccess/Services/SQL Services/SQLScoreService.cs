@@ -15,7 +15,7 @@ namespace SkillManagement.DataAccess.Services
         {
             _SqlsqlunitOfWork = sqlunitOfWork;
         }
-        public int AddScore(SQLScore score)
+        public long AddScore(SQLScore score)
         {
             return _SqlsqlunitOfWork.SQLScoreRepository.Add(score);
         }

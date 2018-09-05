@@ -15,7 +15,7 @@ namespace SkillManagement.DataAccess.Services
         {
             _sqlunitOfWork = sqlunitOfWork;
         }
-        public int AddSkill(SQLSkill skill)
+        public long AddSkill(SQLSkill skill)
         {
             return _sqlunitOfWork.SQLSkillRepository.Add(skill);
         }

@@ -54,7 +54,7 @@ namespace SkillManagement.WebAPI.Controllers
         // POST: Add new employee skill
         [Route("Employee/Skills")]
         [HttpPost]
-        public int Post([FromBody]SQLEmployees_Skill employeeSkill)
+        public long Post([FromBody]SQLEmployees_Skill employeeSkill)
         {
             return _sqlEmployeeSkillService.AddEmployeeSkill(employeeSkill);
         }

@@ -8,7 +8,7 @@ namespace SkillManagement.DataAccess.Interfaces
 
         TEntity Get(TId Id);
         
-        int Add(TEntity entity);
+        long Add(TEntity entity);
 
         void Update(TEntity entity);
 

@@ -5,7 +5,7 @@ namespace SkillManagement.DataAccess.Interfaces
 {
     public interface ISQLEmployeeService
     {
-        int AddEmployee(SQLEmployee employee);
+        long AddEmployee(SQLEmployee employee);
 
         void UpdateEmployee(SQLEmployee employee);
 

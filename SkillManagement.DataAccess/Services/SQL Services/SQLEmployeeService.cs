@@ -12,7 +12,7 @@ namespace SkillManagement.DataAccess.Services
             _SqlsqlunitOfWork = sqlsqlunitOfWork;
         }
 
-        public int AddEmployee(SQLEmployee employee)
+        public long AddEmployee(SQLEmployee employee)
         {
             return _SqlsqlunitOfWork.SQLEmployeeRepository.Add(employee);
             //_sqlunitOfWork.Complete();

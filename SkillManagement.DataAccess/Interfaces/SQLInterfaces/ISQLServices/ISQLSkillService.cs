@@ -5,7 +5,7 @@ namespace SkillManagement.DataAccess.Interfaces
 {
     public interface ISQLSkillService
     {
-        int AddSkill(SQLSkill skill);
+        long AddSkill(SQLSkill skill);
 
         void UpdateSkill(SQLSkill skill);
 
