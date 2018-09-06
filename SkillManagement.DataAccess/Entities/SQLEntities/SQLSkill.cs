@@ -6,6 +6,6 @@ namespace SkillManagement.DataAccess.Entities.SQLEntities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int SkillParentCategory_Id { get; set; }
+        public int? SkillParentCategory_Id { get; set; }
     }
 }
