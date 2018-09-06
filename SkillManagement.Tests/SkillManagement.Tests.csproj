@@ -76,16 +76,21 @@
     <Compile Include="SQLEmployeeComponentTests\EmployeeControllerTests.cs" />
     <Compile Include="SQLEmployeeComponentTests\EmployeeRepositoryTests.cs" />
     <Compile Include="SQLEmployeeComponentTests\EmployeeServiceTests.cs" />
+    <Compile Include="SQLEmployeeSkillComponentTests\EmployeeSkillControllerTests.cs" />
+    <Compile Include="SQLEmployeeSkillComponentTests\EmployeeSkillRepositoryTests.cs" />
+    <Compile Include="SQLEmployeeSkillComponentTests\EmployeeSkillServiceTests.cs" />
+    <Compile Include="SQLScoreComponentTests\ScoreControllerTests.cs" />
+    <Compile Include="SQLScoreComponentTests\ScoreRepositoryTests.cs" />
+    <Compile Include="SQLScoreComponentTests\ScoreServiceTests.cs" />
+    <Compile Include="SQLSkillComponentTests\SkillControllerTests.cs" />
+    <Compile Include="SQLSkillComponentTests\SkillRepositoryTests.cs" />
+    <Compile Include="SQLSkillComponentTests\SkillServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SQLEmployeeSkillComponentTests\" />
-    <Folder Include="SQLScoreComponentTests\" />
-    <Folder Include="SQLSkillComponentTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SkillManagement.DataAccess\SkillManagement.DataAccess.csproj">
       <Project>{341CC34D-BBE7-4AD0-A638-3017489FC59B}</Project>

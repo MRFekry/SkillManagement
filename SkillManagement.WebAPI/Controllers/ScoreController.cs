@@ -39,7 +39,7 @@ namespace SkillManagement.WebAPI.Controllers
         // PUT: Update existing score
         [Route("Score/{score}")]
         [HttpPut]
-        public void Put(int id, [FromBody]SQLScore score)
+        public void Put([FromBody]SQLScore score)
         {
             _scoreService.UpdateScore(score);
         }

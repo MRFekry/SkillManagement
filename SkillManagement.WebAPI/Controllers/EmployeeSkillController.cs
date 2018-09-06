@@ -62,7 +62,7 @@ namespace SkillManagement.WebAPI.Controllers
         // PUT: Update existing employee skill
         [Route("Employee/Skills/{employeeSkill}")]
         [HttpPut]
-        public void Put(int id, [FromBody]SQLEmployees_Skill employeeSkill)
+        public void Put([FromBody]SQLEmployees_Skill employeeSkill)
         {
             _sqlEmployeeSkillService.UpdateEmployeeSkill(employeeSkill);
         }
