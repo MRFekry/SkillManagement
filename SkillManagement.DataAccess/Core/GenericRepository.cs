@@ -26,14 +26,20 @@ namespace SkillManagement.DataAccess.Core
             var columns = GetColumns();
             var stringOfColumns = string.Join(", ", columns);
             var stringOfProperties = string.Join(", ", columns.Select(e => "@" + e));
-            var query = "SP_InsertRecordToTable";
+            //var query = "SP_InsertRecordToTable";
+            var query = "SP_GetInsertionRecordStatementToTable";
 
             using (var db = _connectionFactory.GetSqlConnection)
             {
-                var InsertedEntityId = db.Execute(
+                var InsertionStatement = db.Query<string>(
                     sql: query,
                     param: new { P_tableName = _tableName, P_columnsString = stringOfColumns, P_propertiesString = stringOfProperties },
-                    commandType: CommandType.StoredProcedure);
+                    commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+                var InsertedEntityId = db.Execute(
+                    sql: InsertionStatement,
+                    param: entity,
+                    commandType: CommandType.Text);
 
                 return InsertedEntityId;
             }
@@ -46,11 +52,18 @@ namespace SkillManagement.DataAccess.Core
             
             using (var db = _connectionFactory.GetSqlConnection)
             {
-                var query = "SP_UpdateRecordInTable";
-                var UpdatedEntityId = db.Execute(
+                //var query = "SP_UpdateRecordInTable";
+                var query = "SP_UpdateRecordStatementInTable";
+
+                var UpdateStatement = db.Query(
                     sql: query,
                     param: new { P_tableName = _tableName, P_columnsString = stringOfColumns, P_Id = entity.Id },
-                    commandType: CommandType.StoredProcedure);
+                    commandType: CommandType.StoredProcedure).ToString();
+
+                db.Execute(
+                    sql: UpdateStatement,
+                    param: entity,
+                    commandType: CommandType.Text);
             }
         }
 
@@ -63,11 +76,18 @@ namespace SkillManagement.DataAccess.Core
 
                 using (var db = _connectionFactory.GetSqlConnection)
                 {
-                    var query = "SP_UnActivateRecordInTable";
-                    var result = db.Execute(
+                    //var query = "SP_UnActivateRecordInTable";
+                    var query = "SP_UnActivateRecordStatementInTable";
+
+                    var UnActivateStatement = db.Query(
                         sql: query,
                         param: new { P_tableName = _tableName, P_columnsString = isActiveColumnUpdateString, P_Id = entity.Id },
-                        commandType: CommandType.StoredProcedure);
+                        commandType: CommandType.StoredProcedure).ToString();
+
+                    db.Execute(
+                        sql: UnActivateStatement,
+                        param: entity,
+                        commandType: CommandType.Text);
                 }
             }
             else // delete directly
@@ -85,7 +105,7 @@ namespace SkillManagement.DataAccess.Core
 
         public TEntity Get(TId Id)
         {
-            var query = "SP_InsertRecordToTable";
+            var query = "SP_GetRecordByIdFromTable";
 
             using (var db = _connectionFactory.GetSqlConnection)
             {

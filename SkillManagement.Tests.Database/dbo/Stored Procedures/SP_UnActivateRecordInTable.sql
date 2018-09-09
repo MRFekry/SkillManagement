@@ -3,11 +3,11 @@
 -- Create date: 9/2/2018
 -- Description:	Generic stored procedure to enable soft delete in specified table
 -- =============================================
-create PROCEDURE [dbo].[SP_UnActivateRecordInTable]
+CREATE PROCEDURE [dbo].[SP_UnActivateRecordInTable]
 	-- Add the parameters for the stored procedure here
 	@P_tableName nvarchar(50) = null,
 	@P_columnsString nvarchar(MAX) = null,
-	@P_Id bigint = null
+	@P_Id nvarchar(50) = null
 AS
 BEGIN
 	SET NOCOUNT ON;
@@ -20,7 +20,7 @@ BEGIN
 
 	declare @V_sql as nvarchar(MAX) = null
 	if (@V_table is not null and @P_columnsString is not null and @P_Id is not null)
-		select @V_sql = 'update ' + @V_table + ' set ' + @P_columnsString + ' where Id = ' + @P_Id + ';'
+		select @V_sql = 'update ' + @V_table + ' set ' + @P_columnsString + ' where Id = ' + @P_Id
 
 	if(@V_sql is not null)
 		exec(@V_sql)

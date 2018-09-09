@@ -8,9 +8,14 @@ namespace SkillManagement.DataAccess.Infrastructure
 {
     public class ConnectionFactory : IConnectionFactory
     {
-        private static readonly string _connectionString;
+        private static string _connectionString;
         //private readonly string sqlConnectionString = ConfigurationManager.ConnectionStrings["SQLConnection"].ConnectionString;
         //private readonly string sqlTestConnectionString = ConfigurationManager.ConnectionStrings["SQLTestConnection"].ConnectionString;
+
+        public void SetConnection(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
         
         public IDbConnection GetSqlConnection
         {

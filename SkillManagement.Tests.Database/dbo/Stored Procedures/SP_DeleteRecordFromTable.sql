@@ -3,10 +3,10 @@
 -- Create date: 8/28/2018
 -- Description:	Generic stored procedure to delete specified record from specified table
 -- =============================================
-Create PROCEDURE [dbo].[SP_DeleteRecordFromTable]
+CREATE PROCEDURE [dbo].[SP_DeleteRecordFromTable]
 	-- Add the parameters for the stored procedure here
 	@P_tableName nvarchar(50) = null,
-	@P_Id int = null
+	@P_Id nvarchar(50) = null
 AS
 BEGIN
 	SET NOCOUNT ON;
@@ -19,7 +19,7 @@ BEGIN
 
 	declare @V_sql as nvarchar(MAX) = null
 	if (@V_table is not null and @P_Id is not null)
-		select @V_sql = 'delete from ' + @V_table + 'where Id = ' + @P_Id + '; select 1;'
+		select @V_sql = 'delete from ' + @V_table + 'where Id = ' + @P_Id
 
 	if(@V_sql is not null)
 		exec(@V_sql)

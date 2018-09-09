@@ -3,7 +3,7 @@
 -- Create date: 9/2/2018
 -- Description:	Generic stored procedure to get all records from specified table
 -- =============================================
-create PROCEDURE [dbo].[SP_GetAllRecordsFromTable]
+CREATE PROCEDURE [dbo].[SP_GetAllRecordsFromTable]
 	-- Add the parameters for the stored procedure here
 	@P_tableName nvarchar(50) = null
 AS
@@ -18,7 +18,7 @@ BEGIN
 
 	declare @V_sql as nvarchar(MAX) = null
 	if (@V_table is not null)
-		select @V_sql = 'select * from ' + @V_table + ';'
+		select @V_sql = 'select * from ' + @V_table
 
 	if(@V_sql is not null)
 		exec(@V_sql)

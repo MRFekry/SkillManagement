@@ -75,5 +75,9 @@
     <Build Include="dbo\Stored Procedures\SP_GetRecordByIdFromTable.sql" />
     <Build Include="dbo\Stored Procedures\SP_GetAllRecordsFromTable.sql" />
     <Build Include="dbo\Stored Procedures\SP_DeleteRecordFromTable.sql" />
+    <Build Include="dbo\Stored Procedures\SP_UpdateRecordStatementInTable.sql" />
+    <Build Include="dbo\Stored Procedures\SP_UnActivateRecordStatementInTable.sql" />
+    <Build Include="dbo\Stored Procedures\SP_GetInsertionRecordStatementToTable.sql" />
+    <Build Include="dbo\Stored Procedures\SP_DeleteRecordStatementFromTable.sql" />
   </ItemGroup>
 </Project>
