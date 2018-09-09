@@ -55,10 +55,10 @@ namespace SkillManagement.DataAccess.Core
                 //var query = "SP_UpdateRecordInTable";
                 var query = "SP_UpdateRecordStatementInTable";
 
-                var UpdateStatement = db.Query(
+                var UpdateStatement = db.Query<string>(
                     sql: query,
                     param: new { P_tableName = _tableName, P_columnsString = stringOfColumns, P_Id = entity.Id },
-                    commandType: CommandType.StoredProcedure).ToString();
+                    commandType: CommandType.StoredProcedure).FirstOrDefault();
 
                 db.Execute(
                     sql: UpdateStatement,
@@ -72,17 +72,17 @@ namespace SkillManagement.DataAccess.Core
             if (_isSoftDelete) // applying soft delete
             {
                 var columns = GetColumns();
-                var isActiveColumnUpdateString = columns.Where(e => e == "IsActive").Select(e => $"{e} = 0");
+                var isActiveColumnUpdateString = columns.Where(e => e == "IsActive").Select(e => $"{e} = 0").FirstOrDefault();
 
                 using (var db = _connectionFactory.GetSqlConnection)
                 {
                     //var query = "SP_UnActivateRecordInTable";
                     var query = "SP_UnActivateRecordStatementInTable";
 
-                    var UnActivateStatement = db.Query(
+                    var UnActivateStatement = db.Query<string>(
                         sql: query,
                         param: new { P_tableName = _tableName, P_columnsString = isActiveColumnUpdateString, P_Id = entity.Id },
-                        commandType: CommandType.StoredProcedure).ToString();
+                        commandType: CommandType.StoredProcedure).FirstOrDefault();
 
                     db.Execute(
                         sql: UnActivateStatement,
