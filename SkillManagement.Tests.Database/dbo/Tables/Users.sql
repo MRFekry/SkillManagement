@@ -7,6 +7,9 @@
     [CreatedBy]    NVARCHAR (50)  NULL,
     [DateCreated]  DATETIME       NOT NULL,
     [ModifiedBy]   NVARCHAR (50)  NULL,
-    [DateModified] DATETIME       NULL
+    [DateModified] DATETIME       NULL,
+    CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 

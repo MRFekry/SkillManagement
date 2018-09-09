@@ -24,62 +24,20 @@ namespace SkillManagement.Tests.SQLEmployeeSkillComponentTests
             {
                 new SQLEmployees_Skill {
                     Id = 1,
-                    Employee = new SQLEmployee
-                    {
-                        Id = 1,
-                        FirstName = "Mohamed",
-                        LastName = "Fekry",
-                        Email = "MohamedFekry@mail.com",
-                        IsActive = true
-                    },
                     Employee_Id = 1,
-                    Skill = new SQLSkill
-                    {
-                    },
                     Skill_Id = 1,
-                    Score = new SQLScore
-                    {
-                    },
                     Score_Id = 1
                 },
                 new SQLEmployees_Skill {
                     Id = 2,
-                    Employee = new SQLEmployee
-                    {
-                        Id = 2,
-                        FirstName = "Ahmed",
-                        LastName = "Hamdy",
-                        Email = "AhmedHamdy@mail.com",
-                        IsActive = true
-                    },
                     Employee_Id = 2,
-                    Skill = new SQLSkill
-                    {
-                    },
                     Skill_Id = 2,
-                    Score = new SQLScore
-                    {
-                    },
                     Score_Id = 2
                 },
                 new SQLEmployees_Skill {
                     Id = 3,
-                    Employee = new SQLEmployee
-                    {
-                        Id = 2,
-                        FirstName = "Ahmed",
-                        LastName = "Hamdy",
-                        Email = "AhmedHamdy@mail.com",
-                        IsActive = true
-                    },
                     Employee_Id = 2,
-                    Skill = new SQLSkill
-                    {
-                    },
                     Skill_Id = 1,
-                    Score = new SQLScore
-                    {
-                    },
                     Score_Id = 2
                 }
             };
@@ -106,22 +64,8 @@ namespace SkillManagement.Tests.SQLEmployeeSkillComponentTests
                 new SQLEmployees_Skill
                 {
                     Id = 1,
-                    Employee = new SQLEmployee
-                    {
-                        Id = 1,
-                        FirstName = "Mohamed",
-                        LastName = "Fekry",
-                        Email = "MohamedFekry@mail.com",
-                        IsActive = true
-                    },
                     Employee_Id = 1,
-                    Skill = new SQLSkill
-                    {
-                    },
                     Skill_Id = 1,
-                    Score = new SQLScore
-                    {
-                    },
                     Score_Id = 1
                 });
 
@@ -133,22 +77,8 @@ namespace SkillManagement.Tests.SQLEmployeeSkillComponentTests
                 new SQLEmployees_Skill
                 {
                     Id = 1,
-                    Employee = new SQLEmployee
-                    {
-                        Id = 1,
-                        FirstName = "Mohamed",
-                        LastName = "Fekry",
-                        Email = "MohamedFekry@mail.com",
-                        IsActive = true
-                    },
                     Employee_Id = 1,
-                    Skill = new SQLSkill
-                    {
-                    },
                     Skill_Id = 1,
-                    Score = new SQLScore
-                    {
-                    },
                     Score_Id = 1
                 }.Id);
         }
@@ -160,22 +90,8 @@ namespace SkillManagement.Tests.SQLEmployeeSkillComponentTests
             var employeeSkill = new SQLEmployees_Skill
             {
                 Id = 4,
-                Employee = new SQLEmployee
-                {
-                    Id = 1,
-                    FirstName = "Mohamed",
-                    LastName = "Fekry",
-                    Email = "MohamedFekry@mail.com",
-                    IsActive = true
-                },
                 Employee_Id = 1,
-                Skill = new SQLSkill
-                {
-                },
                 Skill_Id = 3,
-                Score = new SQLScore
-                {
-                },
                 Score_Id = 2
             };
             _sqlEmployeeSkillServiceMock.Setup(s => s.AddEmployeeSkill(employeeSkill)).Returns(employeeSkill.Id);
