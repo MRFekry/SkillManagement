@@ -3,11 +3,11 @@
 -- Create date: 8/28/2018
 -- Description:	Generic stored procedure to update existing specified record in specified table
 -- =============================================
-CREATE PROCEDURE [dbo].[SP_UpdateRecordInTable]
+CREATE PROCEDURE [dbo].[SP_UpdateRecordStatementInTable]
 	-- Add the parameters for the stored procedure here
 	@P_tableName nvarchar(50) = null,
 	@P_columnsString nvarchar(MAX) = null,
-	@P_Id bigint = null
+	@P_Id nvarchar(50) = null
 AS
 BEGIN
 	SET NOCOUNT ON;
@@ -20,10 +20,10 @@ BEGIN
 
 	declare @V_sql as nvarchar(MAX) = null
 	if (@V_table is not null and @P_columnsString is not null and @P_Id is not null)
-		select @V_sql = 'update ' + @V_table + ' set ' + @P_columnsString + ' where Id = ' + @P_Id + '; -- select 1;'
+		select @V_sql = 'update ' + @V_table + ' set ' + @P_columnsString + ' where Id = ' + @P_Id
 
 	if(@V_sql is not null)
-		exec(@V_sql)
+		select @V_sql
 	else
 		select -1;
 END

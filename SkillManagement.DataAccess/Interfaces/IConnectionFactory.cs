@@ -10,5 +10,6 @@ namespace SkillManagement.DataAccess.Interfaces
     public interface IConnectionFactory
     {
         IDbConnection GetSqlConnection { get; }
+        void SetConnection(string connectionString);
     }
 }

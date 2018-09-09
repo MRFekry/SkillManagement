@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using SkillManagement.DataAccess.Core;
 using SkillManagement.DataAccess.Entities.SQLEntities;
 using SkillManagement.DataAccess.Interfaces;
@@ -10,8 +11,10 @@ namespace SkillManagement.DataAccess.Repositories
     {
         private static readonly string _tableName = "Employees";
         private static readonly bool _isSoftDelete = true;
-        public SQLEmployeeRepository(IConnectionFactory connectionFactory) : base(connectionFactory, _tableName, _isSoftDelete)
+        public SQLEmployeeRepository(IConnectionFactory connectionFactory, bool IsTest) : base(connectionFactory, _tableName, _isSoftDelete)
         {
+            if(!IsTest)
+                connectionFactory.SetConnection(ConfigurationManager.ConnectionStrings["SQLConnection"].ConnectionString);
         }
     }
 }

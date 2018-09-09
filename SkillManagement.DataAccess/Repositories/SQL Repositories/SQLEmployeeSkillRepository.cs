@@ -5,6 +5,7 @@ using SkillManagement.DataAccess.Interfaces;
 using SkillManagement.DataAccess.Interfaces.SQLInterfaces.ISQLRepositories;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -15,8 +16,10 @@ namespace SkillManagement.DataAccess.Repositories.SQL_Repositories
     public class SQLEmployeeSkillRepository : GenericRepository<SQLEmployees_Skill, long>, ISQLEmployeeSkillRepository
     {
         private static readonly string _tableName = "Employees_Skills";
-        public SQLEmployeeSkillRepository(IConnectionFactory connectionFactory) : base(connectionFactory, _tableName, false)
+        public SQLEmployeeSkillRepository(IConnectionFactory connectionFactory, bool IsTest) : base(connectionFactory, _tableName, false)
         {
+            if (!IsTest)
+                connectionFactory.SetConnection(ConfigurationManager.ConnectionStrings["SQLConnection"].ConnectionString);
         }
 
         public IEnumerable<SQLEmployees_Skill> GetAllEmployeeSkillsByEmployeeId(long employeeId)

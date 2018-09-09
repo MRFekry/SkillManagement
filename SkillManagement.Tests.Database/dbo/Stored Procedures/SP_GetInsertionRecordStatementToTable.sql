@@ -1,13 +1,13 @@
 ﻿-- =============================================
 -- Author:		Mohamed Ramadan Fekry Mohamed
 -- Create date: 8/28/2018
--- Description:	Generic stored procedure to update existing specified record in specified table
+-- Description:	Generic stored procedure to insert new record to specified table
 -- =============================================
-CREATE PROCEDURE [dbo].[SP_UpdateRecordInTable]
+CREATE PROCEDURE [dbo].[SP_GetInsertionRecordStatementToTable]
 	-- Add the parameters for the stored procedure here
 	@P_tableName nvarchar(50) = null,
-	@P_columnsString nvarchar(MAX) = null,
-	@P_Id bigint = null
+	@P_columnsString nvarchar(MAX) = null, 
+	@P_propertiesString nvarchar(MAX) = null
 AS
 BEGIN
 	SET NOCOUNT ON;
@@ -19,11 +19,11 @@ BEGIN
 		WHERE TABLE_NAME = @P_tableName
 
 	declare @V_sql as nvarchar(MAX) = null
-	if (@V_table is not null and @P_columnsString is not null and @P_Id is not null)
-		select @V_sql = 'update ' + @V_table + ' set ' + @P_columnsString + ' where Id = ' + @P_Id + '; -- select 1;'
+	if (@V_table is not null and @P_columnsString is not null and @P_propertiesString is not null)
+		select @V_sql = 'insert into ' + @V_table + ' (' + @P_columnsString + ') values (' + @P_propertiesString + '); select SCOPE_iDENTITY();'
 
 	if(@V_sql is not null)
-		exec(@V_sql)
+		select @V_sql
 	else
 		select -1;
 END
